@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body { font-family: 'Segoe UI', Arial, sans-serif; line-height: 1.6; color: #333; max-width: 800px; margin: 40px auto; }
+        h1 { color: #2c3e50; border-bottom: 2px solid #34495e; padding-bottom: 10px; }
+        h2 { color: #2980b9; margin-top: 30px; border-bottom: 1px solid #eee; }
+        h3 { color: #16a085; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+        th { background-color: #f8f9fa; color: #34495e; }
+        .footer { margin-top: 50px; font-style: italic; color: #7f8c8d; border-top: 1px solid #eee; padding-top: 20px; }
+    </style>
+</head>
+<body>
+
+<h1>ToyChain Blockchain: Final Implementation Report</h1>
+
+<h2>1. Project Overview</h2>
+<p>ToyChain is a functional blockchain simulation designed to demonstrate the core principles of cryptography, data integrity, and distributed ledgers. The project evolved from a command-line utility into a modern GUI application with real-time visualization.</p>
+
+<h2>2. Technical Architecture & Analysis</h2>
+<p>The system is built as a modular C++ application with a clean separation between core logic and the presentation layer.</p>
+
+<h3>Core Components</h3>
+<ul>
+    <li><strong>Blockchain</strong>: The central manager that maintains the chain of blocks and the transaction pool.</li>
+    <li><strong>Block</strong>: A container for transactions, metadata (index, timestamp, nonce), and linking hashes.</li>
+    <li><strong>Merkle Tree</strong>: A cryptographic tool used to summarize all transactions in a block into a single "Merkle Root" for efficient integrity checks.</li>
+    <li><strong>GUI Dashboard</strong>: A modern wxWidgets interface providing interactive control and real-time status updates.</li>
+</ul>
+
+<h2>3. Data Structures Used</h2>
+<table>
+    <tr>
+        <th>Component</th>
+        <th>Data Structure</th>
+        <th>Rationale</th>
+    </tr>
+    <tr>
+        <td><strong>Blockchain</strong></td>
+        <td>std::vector&lt;Block&gt;</td>
+        <td>Blocks are stored sequentially. A vector provides O(1) access to any block and efficient appending.</td>
+    </tr>
+    <tr>
+        <td><strong>Mempool</strong></td>
+        <td>std::priority_queue</td>
+        <td>Transactions are sorted by "Fee" so that miners pick the most profitable ones first.</td>
+    </tr>
+    <tr>
+        <td><strong>Transaction List</strong></td>
+        <td>std::vector&lt;Transaction&gt;</td>
+        <td>Used within each block to store a fixed set of transactions in a contiguous memory block.</td>
+    </tr>
+    <tr>
+        <td><strong>Merkle Tree</strong></td>
+        <td>Recursive Binary Tree (implicit)</td>
+        <td>Implemented using a recursive std::vector approach to compute the root hash.</td>
+    </tr>
+</table>
+
+<h2>4. Cryptographic Implementation</h2>
+<ul>
+    <li><strong>Hashing</strong>: Powered by the picosha2 library (SHA-256). Every block contains the hash of the previous block, creating an immutable chain.</li>
+    <li><strong>Proof of Work</strong>: Implements a difficulty system where a block hash must start with a specific number of zeros.</li>
+    <li><strong>Tamper Detection</strong>: The system re-calculates hashes and Merkle Roots during validation to detect unauthorized changes.</li>
+</ul>
+
+<h2>5. Development Summary</h2>
+<h3>Stage 1: Problem Solving</h3>
+<p>Resolved environment issues related to compiler paths and standard headers (&lt;time.h&gt; vs &lt;ctime&gt;).</p>
+<h3>Stage 2: Core Verification</h3>
+<p>Verified mathematical correctness of hashing and mining logic through console simulations.</p>
+<h3>Stage 3: Modernization</h3>
+<p>Developed a modern dashboard using wxWidgets with a professional dark theme.</p>
+
+<div class="footer">
+    <p>Prepared for: DS Lab Project Submission</p>
+    <p>Implementation Status: 100% Complete</p>
+</div>
+
+</body>
+</html>
